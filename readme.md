@@ -9,7 +9,7 @@ Fabian CSG ([Constructive Shape Geometry](http://en.wikipedia.org/wiki/Construct
 
 ## Features
 
-- [x] Fully ported csg.js library (MIT license) to Java, using JMonkeyEngineís Vector3f.
+- [x] Fully ported csg.js library (MIT license) to Java, using JMonkeyEngine‚Äôs Vector3f.
 - [x] Added function to produce a Mesh from the CSG object.
 - [x] Made CSG.shapeName( static functions into classes that extend CSG.
 - [x] Created CSGNode class, which is used to sequentially add CSG brushes and output 1 geometry (Soon to be node)
@@ -21,40 +21,47 @@ Fabian CSG ([Constructive Shape Geometry](http://en.wikipedia.org/wiki/Construct
 ## Usage
 
 ```java
-Material mat_csg = assetManager.loadMaterial(ìMaterials/WallCover/BrownBricks.j3mî);
-            mat_csg.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Off);
-            CSGNode csg = new CSGNode();
-            csg.setMaterial(mat_csg);
-            CubeBrush base = new CubeBrush(new Vector3f(0f, 0f, 0f), new Vector3f(1f, 1f, 1f));
-            csg.addBrush(base);
-            SphereBrush hole = new SphereBrush(new Vector3f(0f, 0f, 0f), 1.3f, 16, 8);
-            hole.setType(BrushType.SUBTRACTIVE);
-            csg.addBrush(hole);
-            csg.regenerate();
-            csg.move(0f, 1f, 0f);
-            this.app.getRootNode().attachChild(csg);
+Material mat_csg = assetManager.loadMaterial(‚ÄúMaterials/WallCover/BrownBricks.j3m‚Äù);
+mat_csg.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Off);
+
+CSGNode csg = new CSGNode();
+csg.setMaterial(mat_csg);
+
+CubeBrush base = new CubeBrush(new Vector3f(0f, 0f, 0f), new Vector3f(1f, 1f, 1f));
+csg.addBrush(base);
+
+SphereBrush hole = new SphereBrush(new Vector3f(0f, 0f, 0f), 1.3f, 16, 8);
+hole.setType(BrushType.SUBTRACTIVE);
+
+csg.addBrush(hole);
+csg.regenerate();
+csg.move(0f, 1f, 0f);
+
+this.app.getRootNode().attachChild(csg);
 ```
 
 
 ```java
-Material mat_csg = assetManager.loadMaterial(ìMaterials/WallCover/BrownBricks.j3mî);
-            mat_csg.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Off);
-            //mat_csg.getAdditionalRenderState().setWireframe(true);
-            CSGNode csg = new CSGNode();
-            csg.setMaterial(mat_csg);
- 
-            Spatial s = assetManager.loadModel(ìModels/Characters/Goblin.j3oî);
-            ArrayList<Geometry> g = new ArrayList<>();
-            GeometryBatchFactory.gatherGeoms(s, g);
-            Mesh m = new Mesh();
-            GeometryBatchFactory.mergeGeometries(g, m);
-            MeshBrush mb = new MeshBrush(m);
-            csg.addBrush(mb);
-            CubeBrush base = new CubeBrush(new Vector3f(0f, 0.5f, 0f), new Vector3f(1f, 0.1f, 1f));
-            base.setType(BrushType.SUBTRACTIVE);
-            csg.addBrush(base);
- 
-            csg.regenerate();
-            csg.move(0f, 1f, 0f);
-            this.app.getRootNode().attachChild(csg);
+Material mat_csg = assetManager.loadMaterial(‚ÄúMaterials/WallCover/BrownBricks.j3m‚Äù);
+mat_csg.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Off);
+
+CSGNode csg = new CSGNode();
+csg.setMaterial(mat_csg);
+
+Spatial s = assetManager.loadModel(‚ÄúModels/Characters/Goblin.j3o‚Äù);
+
+ArrayList<Geometry> g = new ArrayList<>();
+GeometryBatchFactory.gatherGeoms(s, g);
+Mesh m = new Mesh();
+GeometryBatchFactory.mergeGeometries(g, m);
+MeshBrush mb = new MeshBrush(m);
+csg.addBrush(mb);
+CubeBrush base = new CubeBrush(new Vector3f(0f, 0.5f, 0f), new Vector3f(1f, 0.1f, 1f));
+base.setType(BrushType.SUBTRACTIVE);
+
+csg.addBrush(base);
+csg.regenerate();
+csg.move(0f, 1f, 0f);
+
+this.app.getRootNode().attachChild(csg);
 ```
