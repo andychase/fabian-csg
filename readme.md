@@ -1,5 +1,7 @@
 # Fabian CSG
 
+*A fork of this project exists here: <https://sourceforge.net/projects/jmonkeycsg/>*
+
 Fabian CSG ([Constructive Shape Geometry](http://en.wikipedia.org/wiki/Constructive_solid_geometry)) is a library for [jMonkeyEngine](http://jmonkeyengine.org) that allows creating dynamic models with [boolean operations](http://en.wikipedia.org/wiki/Boolean_operations_on_polygons). 
 
 
